@@ -6,6 +6,7 @@ config/name="Tidy Tank"
 config/description="Sort puzzle + aquarium collection game for teens (13+). Relaxing, satisfying, built to keep players coming back."
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3")
+config/icon="res://assets/graphics/icon.png"
 
 [autoload]
 

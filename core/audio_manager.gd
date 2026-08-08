@@ -5,22 +5,29 @@ extends Node
 # SFX get a small random pitch shift so repeats feel organic, not robotic.
 
 const SFX_FILES := {
-    "ball_drop": "res://assets/audio/sfx_ball_drop.ogg",
-    "ball_pick": "res://assets/audio/sfx_ball_pick.ogg",
-    "level_win": "res://assets/audio/sfx_level_win.ogg",
-    "hint": "res://assets/audio/sfx_hint.ogg",
-    "undo": "res://assets/audio/sfx_undo.ogg",
-    "restart": "res://assets/audio/sfx_restart.ogg",
-    "fish_add": "res://assets/audio/sfx_fish_add.ogg",
-    "reward": "res://assets/audio/sfx_reward.ogg",
-    "gift": "res://assets/audio/sfx_gift.ogg",
-    "ui_tap": "res://assets/audio/sfx_ui_tap.ogg",
-    "error": "res://assets/audio/sfx_error.ogg"
+    "ball_drop": "res://assets/audio/sfx_ball_drop",
+    "ball_pick": "res://assets/audio/sfx_ball_pick",
+    "level_win": "res://assets/audio/sfx_level_win",
+    "hint": "res://assets/audio/sfx_hint",
+    "undo": "res://assets/audio/sfx_undo",
+    "restart": "res://assets/audio/sfx_restart",
+    "fish_add": "res://assets/audio/sfx_fish_add",
+    "reward": "res://assets/audio/sfx_reward",
+    "gift": "res://assets/audio/sfx_gift",
+    "ui_tap": "res://assets/audio/sfx_ui_tap",
+    "error": "res://assets/audio/sfx_error"
 }
 const MUSIC_FILES := {
-    "menu": "res://assets/audio/music_menu.ogg",
-    "play": "res://assets/audio/music_play.ogg"
+    "menu": "res://assets/audio/music_menu",
+    "play": "res://assets/audio/music_play"
 }
+
+# Tries .wav then .ogg for each name (Godot imports both natively).
+func _resolve(path: String) -> String:
+    for ext in [".wav", ".ogg"]:
+        if FileAccess.file_exists(path + ext):
+            return path + ext
+    return ""
 
 var _music_player: AudioStreamPlayer
 var _sfx_pool: Array[AudioStreamPlayer] = []
@@ -40,8 +47,9 @@ func _ready() -> void:
 
 func _preload_sfx() -> void:
     for key in SFX_FILES:
-        if FileAccess.file_exists(SFX_FILES[key]):
-            _sfx_cache[key] = load(SFX_FILES[key])
+        var p := _resolve(SFX_FILES[key])
+        if p != "":
+            _sfx_cache[key] = load(p)
 
 func _ensure_buses() -> void:
     for name in ["Music", "SFX"]:
@@ -76,9 +84,10 @@ func _get_sfx_player() -> AudioStreamPlayer:
     return p
 
 func play_music(name: String) -> void:
-    if _muted or not FileAccess.file_exists(MUSIC_FILES.get(name, "")):
+    var path := _resolve(MUSIC_FILES.get(name, ""))
+    if _muted or path == "":
         return
-    var stream = load(MUSIC_FILES[name])
+    var stream = load(path)
     if _music_player.stream == stream and _music_player.playing:
         return
     _music_player.stream = stream

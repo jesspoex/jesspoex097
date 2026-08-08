@@ -42,7 +42,8 @@ func _default() -> Dictionary:
         "unlocked_powers": [],
         "quests": [],
         "remove_ads": false,
-        "muted": false
+        "muted": false,
+        "keys": 0
     }
 
 func save() -> void:
@@ -100,6 +101,11 @@ func register_level_clear() -> void:
     add_coins(GameConfig.COINS_PER_LEVEL)
     _add_quest_progress("win", 1)
     SignalBus.level_completed.emit(int(data["level_index"]))
+    # Grant keys when the NEXT level is the first of a new chapter.
+    if int(data["level_index"]) % GameConfig.LEVELS_PER_CHAPTER == 0:
+        var ch: Dictionary = GameConfig.chapter_for_level(int(data["level_index"]))
+        if int(ch["locked"]) > 0:
+            grant_keys(int(ch["locked"]))
     # Surprise gift dopamine spike.
     if randf() < GIFT_CHANCE:
         _grant_gift()
@@ -142,6 +148,15 @@ func use_hint() -> bool:
         save()
         return true
     return false
+
+# ---- Keys (unlock locked tubes in chapters 3-5) ---------------------------
+func get_keys() -> int: return int(data["keys"])
+func spend_key() -> void:
+    data["keys"] = maxi(0, int(data["keys"]) - 1)
+    save()
+func grant_keys(n: int) -> void:
+    data["keys"] = int(data["keys"]) + n
+    save()
 
 # ---- Skins / powers --------------------------------------------------------
 func get_skin(kind: String) -> String: return data["skins"].get(kind, "default")

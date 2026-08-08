@@ -21,6 +21,7 @@ var ball_scene: PackedScene
 func _ready() -> void:
     ball_scene = preload("res://scenes/ball.tscn")
     level = LevelGenerator.generate(SaveManager.data["level_index"])
+    keys = SaveManager.get_keys()
     _build_tubes()
     level_label.text = "Level %d" % (SaveManager.data["level_index"] + 1)
     AudioManager.play_sfx("ui_tap")
@@ -66,9 +67,11 @@ func _on_tube_input(ev: InputEvent, i: int) -> void:
     if ev is InputEventMouseButton and ev.pressed and not ev.double_click:
         _on_tube_tapped(i)
 
+var keys := 0   # unlock keys for this chapter (from SaveManager)
+
 func _on_tube_tapped(i: int) -> void:
     if i in locked:
-        AudioManager.play_sfx("error")
+        _try_unlock(i)
         return
     if selected == -1:
         if tubes[i].is_empty():
@@ -125,6 +128,27 @@ func _check_win() -> void:
     AdManager.show_interstitial()
     await get_tree().create_timer(0.8).timeout
     SignalBus.request_screen.emit("home")
+
+func _try_unlock(i: int) -> void:
+    if i in locked:
+        if keys > 0:
+            keys -= 1
+            SaveManager.spend_key()
+            locked.erase(i)
+            AudioManager.play_sfx("gift")
+            _refresh_all()
+        else:
+            AdManager.show_rewarded("unlock_tube")
+            # On reward, unlock is granted via _on_ad_unlock().
+            await SignalBus.ad_reward_granted
+            if not (i in locked):
+                return
+            locked.erase(i)
+            AudioManager.play_sfx("gift")
+            _refresh_all()
+
+func _on_ad_unlock() -> void:
+    pass
 
 func _on_hint_pressed() -> void:
     if SaveManager.use_hint():
