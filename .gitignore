@@ -1,7 +1,8 @@
 # Godot / Tidy Tank ignore
 .godot/
 /android/
-export/
+/export/
+/web/
 *.import
 # local keystore (DO NOT COMMIT SECRETS)
 android/*.keystore
