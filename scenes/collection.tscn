@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtidytankcoll001"]
+
+[ext_resource type="Script" path="res://scripts/collection.gd" id="1_col"]
+
+[node name="Collection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_col")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="Grid" type="GridContainer" parent="VBox"]
+layout_mode = 1
+columns = 4
+theme_override_constants/separation = 10
+
+[node name="Skins" type="HBoxContainer" parent="VBox"]
+layout_mode = 1
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="VBox"]
+layout_mode = 1
+text = "Back"
+
+[connection signal="pressed" from="VBox/BackButton" to="." method="_on_back_pressed"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtidytankhome001"]
+
+[ext_resource type="Script" path="res://scripts/home.gd" id="1_home"]
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_home")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="TopBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 1
+theme_override_constants/separation = 20
+
+[node name="CoinLabel" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+text = "Coins: 0"
+
+[node name="GemLabel" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+text = "Gems: 0"
+
+[node name="MuteButton" type="Button" parent="VBox/TopBar"]
+layout_mode = 2
+text = "Mute: OFF"
+
+[node name="StreakLabel" type="Label" parent="VBox"]
+layout_mode = 1
+text = "Streak: 1 day(s)"
+
+[node name="DailyButton" type="Button" parent="VBox"]
+layout_mode = 1
+text = "Claim Daily Reward"
+
+[node name="QuestBox" type="VBoxContainer" parent="VBox"]
+layout_mode = 1
+theme_override_constants/separation = 6
+
+[node name="PlayButton" type="Button" parent="VBox"]
+layout_mode = 1
+text = "Play"
+
+[node name="AquariumButton" type="Button" parent="VBox"]
+layout_mode = 1
+text = "Aquarium"
+
+[node name="CollectionButton" type="Button" parent="VBox"]
+layout_mode = 1
+text = "Fishdex"
+
+[connection signal="pressed" from="VBox/TopBar/MuteButton" to="." method="_on_mute_pressed"]
+[connection signal="pressed" from="VBox/DailyButton" to="." method="_on_daily_pressed"]
+[connection signal="pressed" from="VBox/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBox/AquariumButton" to="." method="_on_aquarium_pressed"]
+[connection signal="pressed" from="VBox/CollectionButton" to="." method="_on_collection_pressed"]
