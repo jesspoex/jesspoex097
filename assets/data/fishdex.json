@@ -1,0 +1,14 @@
+[
+  {"id":"guppy","name":"Guppy","color":"#4db8ff","rarity":"common"},
+  {"id":"neon","name":"Neon Tetra","color":"#5ad15a","rarity":"common"},
+  {"id":"molly","name":"Molly","color":"#ffd24d","rarity":"common"},
+  {"id":"clown","name":"Clownfish","color":"#ff8c1a","rarity":"rare"},
+  {"id":"jelly","name":"Glow Jelly","color":"#9b5aff","rarity":"rare"},
+  {"id":"crab","name":"Reef Crab","color":"#ff5a5a","rarity":"rare"},
+  {"id":"turtle","name":"Mini Turtle","color":"#3fae6a","rarity":"epic"},
+  {"id":"shark","name":"Baby Shark","color":"#9aa7b3","rarity":"epic"},
+  {"id":"puffer","name":"Pufferfish","color":"#ffb13d","rarity":"epic"},
+  {"id":"angel","name":"Angel Fish","color":"#ff5ad1","rarity":"legendary"},
+  {"id":"dragon","name":"Sea Dragon","color":"#ffe14d","rarity":"legendary"},
+  {"id":"kraken","name":"Mini Kraken","color":"#7a4dff","rarity":"legendary"}
+]

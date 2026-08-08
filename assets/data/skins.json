@@ -1,0 +1,17 @@
+{
+  "bottles": [
+    {"id":"default","name":"Glass","color":"#88c0ff"},
+    {"id":"neon","name":"Neon","color":"#5affd1"},
+    {"id":"gold","name":"Gold","color":"#ffd24d"}
+  ],
+  "balls": [
+    {"id":"default","name":"Circle","shape":"circle"},
+    {"id":"emoji","name":"Emoji","shape":"emoji"},
+    {"id":"star","name":"Star","shape":"star"}
+  ],
+  "backgrounds": [
+    {"id":"reef","name":"Coral Reef","color":"#0b3a5e"},
+    {"id":"deep","name":"Deep Blue","color":"#06182b"},
+    {"id":"space","name":"Space Tank","color":"#0b0b2a"}
+  ]
+}

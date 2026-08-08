@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtidytankgame001"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_game"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_game")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="TopBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 1
+theme_override_constants/separation = 20
+
+[node name="LevelLabel" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Spacer" type="Control" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameArea" type="CenterContainer" parent="VBox"]
+layout_mode = 1
+size_flags_vertical = 3
+
+[node name="TubeGrid" type="HBoxContainer" parent="VBox/GameArea"]
+layout_mode = 1
+theme_override_constants/separation = 18
+
+[node name="Controls" type="HBoxContainer" parent="VBox"]
+layout_mode = 1
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="HintButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Hint"
+
+[node name="UndoButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Undo"
+
+[node name="RestartButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Restart"
+
+[node name="HomeButton" type="Button" parent="VBox/Controls"]
+layout_mode = 2
+text = "Home"
+
+[node name="HintButton" parent="VBox/Controls" index="0"]
+pressed = null
+
+[node name="UndoButton" parent="VBox/Controls" index="1"]
+pressed = null
+
+[node name="RestartButton" parent="VBox/Controls" index="2"]
+pressed = null
+
+[node name="HomeButton" parent="VBox/Controls" index="3"]
+pressed = null
+
+[connection signal="pressed" from="VBox/Controls/HintButton" to="." method="_on_hint_pressed"]
+[connection signal="pressed" from="VBox/Controls/UndoButton" to="." method="_on_undo_pressed"]
+[connection signal="pressed" from="VBox/Controls/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBox/Controls/HomeButton" to="." method="_on_home_pressed"]

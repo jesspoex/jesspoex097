@@ -1,0 +1,38 @@
+config_version=5
+
+[application]
+
+config/name="Tidy Tank"
+config/description="Sort puzzle + aquarium collection game for teens (13+). Relaxing, satisfying, built to keep players coming back."
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.3")
+config/icon="res://assets/graphics/icon.png"
+
+[autoload]
+
+SaveManager="*res://core/save_manager.gd"
+SignalBus="*res://core/signal_bus.gd"
+AudioManager="*res://core/audio_manager.gd"
+AdManager="*res://core/ad_manager.gd"
+GameConfig="*res://core/game_config.gd"
+LevelGenerator="*res://core/level_generator.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation="portrait"
+
+[input]
+
+tap={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"pressed":true,"button_index":1,"canceled":false,"double_click":false,"script":null)
+]
+}
+
+[audio]
+
+enable_audio_input=false

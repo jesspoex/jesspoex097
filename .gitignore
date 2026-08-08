@@ -1,0 +1,11 @@
+# Godot / Tidy Tank ignore
+.godot/
+/android/
+export/
+*.import
+# local keystore (DO NOT COMMIT SECRETS)
+android/*.keystore
+android/keystore.properties
+# user save (local only)
+user://
+.DS_Store
