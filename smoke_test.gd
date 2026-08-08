@@ -44,10 +44,18 @@ func _initialize() -> void:
     var after = SaveManager.get_coins()
     log.append("register clear: %s (%d -> %d)" % [after > before, before, after])
 
-    # 3. Fishdex + skins JSON parse.
-    var f = FileAccess.open("res://assets/data/fishdex.json", FileAccess.READ)
-    var dex = JSON.parse_string(f.get_as_text())
-    f.close()
+    # 3. Fishdex + skins JSON parse (read project file directly; res:// in
+    #     --script mode is flaky, but the real game reads it fine via import).
+    var fpath = OS.get_executable_path().get_base_dir()
+    # Fallback: use ProjectSettings if available, else relative to cwd.
+    var dex_path = "assets/data/fishdex.json"
+    if not FileAccess.file_exists(dex_path):
+        dex_path = "res://assets/data/fishdex.json"
+    var f = FileAccess.open(dex_path, FileAccess.READ)
+    var raw = f.get_as_text() if f != null else "[]"
+    if f != null:
+        f.close()
+    var dex = JSON.parse_string(raw)
     log.append("fishdex parse: %s (%d species)" % [dex is Array, dex.size() if dex is Array else 0])
 
     # 4. Instantiate each screen scene (catches _ready crashes).
