@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtidytanktitle001"]
+
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_title"]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_title")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="Mascot" type="ColorRect" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 80)
+size = Vector2(120, 80)
+color = Color(1, 0.827451, 0.478431, 1)
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "TIDY TANK"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 54
+
+[node name="SubLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Sort. Collect. Relax."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="PlayButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(260, 70)
+text = "PLAY"
+theme_override_font_sizes/font_size = 32
+
+[node name="MuteButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 50)
+text = "Mute: OFF"

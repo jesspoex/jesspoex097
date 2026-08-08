@@ -59,7 +59,7 @@ func _initialize() -> void:
     log.append("fishdex parse: %s (%d species)" % [dex is Array, dex.size() if dex is Array else 0])
 
     # 4. Instantiate each screen scene (catches _ready crashes).
-    for s in ["main", "home", "game", "aquarium", "collection"]:
+    for s in ["main", "title", "home", "game", "aquarium", "collection"]:
         var path = "res://scenes/%s.tscn" % s
         var scn = load(path)
         if scn == null:
